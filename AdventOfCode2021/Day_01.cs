@@ -10,6 +10,7 @@ namespace AdventOfCode
     {
         private readonly string input;
         private readonly int[] depths;
+
         public Day_01()
         {
             input = File.ReadAllText(InputFilePath);
@@ -27,7 +28,7 @@ namespace AdventOfCode
             {
                 largerTally += (depths[i] > depths[i-1]) ? 1 : 0;
             }
-            return new ValueTask<string>($"Solution to {ClassPrefix} {CalculateIndex()}, part 1: {largerTally}");
+            return new ValueTask<string>($"Number of times a depth measurement increases: {largerTally}");
         }
 
         public override ValueTask<string> Solve_2()
@@ -37,7 +38,7 @@ namespace AdventOfCode
             {
                 largerTally += (depths.Skip(i+1).Take(3).Sum() > depths.Skip(i).Take(3).Sum()) ? 1 : 0;
             }
-             return new ValueTask<string>($"Solution to {ClassPrefix} {CalculateIndex()}, part 2: {largerTally}");
+             return new ValueTask<string>($"Number of times a depth measurement increases: {largerTally}");
         }
     }
 }
