@@ -26,7 +26,7 @@ namespace AdventOfCode
             {
                 largerTally += (depths[i] > depths[i-1]) ? 1 : 0;
             }
-            return new ValueTask<string>($"Number of times a depth measurement increases: {largerTally}");
+            return new ValueTask<string>($"Depth increases: {largerTally}");
         }
 
 
@@ -37,7 +37,7 @@ namespace AdventOfCode
             {
                 largerTally += (depths.Skip(i+1).Take(3).Sum() > depths.Skip(i).Take(3).Sum()) ? 1 : 0;
             }
-             return new ValueTask<string>($"Number of times a depth measurement increases: {largerTally}");
+             return new ValueTask<string>($"Depth increases (3 measurement rolling average): {largerTally}");
         }
     }
 }
