@@ -8,18 +8,16 @@ namespace AdventOfCode
 {
     public class Day_01 : BaseDay
     {
-        private readonly string input;
         private readonly int[] depths;
 
         public Day_01()
         {
-            input = File.ReadAllText(InputFilePath);
-
-            depths = input
-                        .Split("\r\n")
-                        .Select(d => int.Parse(d))
-                        .ToArray();
+            depths = File.ReadAllText(InputFilePath)
+                         .Split("\r\n")
+                         .Select(d => int.Parse(d))
+                         .ToArray();
         }
+
 
         public override ValueTask<string> Solve_1()
         {
@@ -30,6 +28,7 @@ namespace AdventOfCode
             }
             return new ValueTask<string>($"Number of times a depth measurement increases: {largerTally}");
         }
+
 
         public override ValueTask<string> Solve_2()
         {
