@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace AdventOfCode
+namespace AdventOfCode2021
 {
     public class Day_01 : BaseDay
     {
@@ -40,4 +40,5 @@ namespace AdventOfCode
              return new ValueTask<string>($"Depth increases (3 measurement rolling average): {largerTally}");
         }
     }
+
 }
