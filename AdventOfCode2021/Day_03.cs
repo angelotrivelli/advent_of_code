@@ -16,19 +16,19 @@ namespace AdventOfCode2021
 
         public override ValueTask<string> Solve_1()
         {
-            // int[] tally = {0,0,0,0, 0,0,0,0, 0,0,0,0};
-            int[] tally = {0,0,0,0,0};
+            int[] tally = {0,0,0,0, 0,0,0,0, 0,0,0,0};
+            //int[] tally = {0,0,0,0,0};
 
             foreach(var d in diags)
-                for(int i=0 ; i<5 ; i++)
+                for(UInt16 i=0 ; i<12 ; i++)
                     tally[i] += (d & (1 << i)) >> i;
 
-            Console.WriteLine("------------");
-            foreach(var t in tally){
-                Console.Write(t + " ");
-            }
-            Console.WriteLine();
-            Console.WriteLine("------------");
+            // Console.WriteLine("------------");
+            // foreach(var t in tally){
+            //     Console.Write(t + " ");
+            // }
+            // Console.WriteLine();
+            // Console.WriteLine("------------");
 
             var numLines = diags.Count();
             var g = tally.Select(x => x>numLines/2 ? 1 : 0).Reverse();
@@ -50,37 +50,58 @@ namespace AdventOfCode2021
 
         public override ValueTask<string> Solve_2()
         {
-            //int[] tally = {0,0,0,0, 0,0,0,0, 0,0,0,0};
-            int[] tally = {0,0,0,0,0};
-
             IEnumerable<UInt16> oxy = diags.ToList();
-            IEnumerable<UInt16> co2 = diags.ToList();
 
-            var numLines = diags.Count();
-
-            for(int i=4 ; i>=0 ; i--)
+            for(int i=11 ; i>=0 ; i--)
             {
 
-                if (oxy.Sum(x => (x & (1 << i)) >> i) >= oxy.Count()/2)
+                if (oxy.Where(x => ((x & ((UInt16)1 << i)) >> i == (UInt16)1)).Count() >=
+                    oxy.Where(x => ((x & ((UInt16)1 << i)) >> i == (UInt16)0)).Count())
                 {
-                    oxy = oxy.Where(x => ((x & (1 << i)) >> i) == 1);
+                    oxy = oxy.Where(x => ((x & ((UInt16)1 << i)) >> i) == (UInt16)1).ToList();
                 }
                 else
                 {
-                    oxy = oxy.Where(x => ((x & (1 << i)) >> i) == 0);
+                    oxy = oxy.Where(x => ((x & ((UInt16)1 << i)) >> i) == (UInt16)0).ToList();
                 }
 
-                Console.WriteLine($"{i}--------- oxy count = {oxy.Count()} ");
-                foreach(var o in oxy)
-                {
-                    Console.WriteLine(Convert.ToString(o,2).PadLeft(5,'0'));
-                }
-                Console.WriteLine("-----------");
+                // Console.WriteLine($"{i}--------- oxy count = {oxy.Count()} ");
+                // foreach(var o in oxy)
+                // {
+                //     Console.WriteLine(Convert.ToString(o,2).PadLeft(12,'0'));
+                // }
+                // Console.WriteLine("-----------");
+                if (oxy.Count() == 1) break;
             }
 
+            Console.WriteLine($"oxy = {Convert.ToString(oxy.First(), 2).PadLeft(12, '0')}");
 
+            IEnumerable<UInt16> co2 = diags.ToList();
 
-            return new ValueTask<string>("");
+            for (int i = 11; i >= 0; i--)
+            {
+                if (co2.Where(x => ((x & ((UInt16)1 << i)) >> i == (UInt16)0)).Count() <=
+                    co2.Where(x => ((x & ((UInt16)1 << i)) >> i == (UInt16)1)).Count())
+                {
+                    co2 = co2.Where(x => ((x & ((UInt16)1 << i)) >> i) == (UInt16)0).ToList();
+                }
+                else
+                {
+                    co2 = co2.Where(x => ((x & ((UInt16)1 << i)) >> i) == (UInt16)1).ToList();
+                }
+
+                // Console.WriteLine($"{i}--------- co2 count = {co2.Count()} ");
+                // foreach (var c in co2)
+                // {
+                //     Console.WriteLine(Convert.ToString(c, 2).PadLeft(12, '0'));
+                // }
+                // Console.WriteLine("-----------");
+                if (co2.Count() == 1) break;
+            }
+
+            Console.WriteLine($"co2 = {Convert.ToString(co2.First(), 2).PadLeft(12, '0')}");
+
+            return new ValueTask<string>($"oxy * co2 = {oxy.First()*co2.First()}");
         }
     }
 
