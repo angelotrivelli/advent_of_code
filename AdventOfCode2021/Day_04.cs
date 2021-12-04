@@ -8,31 +8,31 @@ namespace AdventOfCode2021
         private readonly Regex DrawRegex = new(@"(\d+,)+\d+");
         private readonly Regex NumberRegex = new Regex(@"\d+");
         private readonly IEnumerable<int> draws;
-        private readonly IEnumerable<int> allNumbers;
+        private readonly IEnumerable<int> boardNums;
 
 
         public Day_04()
         {
             var input = File.ReadAllText(InputFilePath);
 
-            var drawMatch = DrawRegex.Match(input);
-            var boardStart = drawMatch.Index + drawMatch.Length;
-            var boardNums = input.Substring(boardStart);
+            var drawText = DrawRegex.Match(input);
+            var boardText = input.Substring(drawText.Index + drawText.Length);
 
-            draws = drawMatch.Value.Split(",").Select(x => int.Parse(x));
-            allNumbers = NumberRegex.Matches(boardNums).Select(m => int.Parse(m.Value));
+            draws = drawText.Value.Split(",").Select(x => int.Parse(x));
+            boardNums = NumberRegex.Matches(boardText).Select(m => int.Parse(m.Value));
         }
+
 
         public override ValueTask<string> Solve_1()
         {
             var numSquaresPerBoard = Board.size * Board.size;
-            var numBoards = allNumbers.Count() / numSquaresPerBoard;
+            var numBoards = boardNums.Count() / numSquaresPerBoard;
 
             List<Board> boards = new();
 
             for (int n=0; n<numBoards; n++)
             {
-                boards.Add(new Board(n, allNumbers.Skip(n * numSquaresPerBoard).Take(numSquaresPerBoard)));
+                boards.Add(new Board(n, boardNums.Skip(n * numSquaresPerBoard).Take(numSquaresPerBoard)));
             }
 
             foreach(var d in draws)
@@ -45,22 +45,20 @@ namespace AdventOfCode2021
                     }
                 }
             }
-
-
-
             return new ValueTask<string>("");
         }
+
 
         public override ValueTask<string> Solve_2()
         {
             var numSquaresPerBoard = Board.size * Board.size;
-            var numBoards = allNumbers.Count() / numSquaresPerBoard;
+            var numBoards = boardNums.Count() / numSquaresPerBoard;
 
             List<Board> boards = new();
 
             for (int n = 0; n < numBoards; n++)
             {
-                boards.Add(new Board(n, allNumbers.Skip(n * numSquaresPerBoard).Take(numSquaresPerBoard)));
+                boards.Add(new Board(n, boardNums.Skip(n * numSquaresPerBoard).Take(numSquaresPerBoard)));
             }
 
             List<(int id, int draw, int score)> winningBoards = new();
@@ -85,7 +83,6 @@ namespace AdventOfCode2021
     internal class Square
     {
         public int Number { get; }
-
         public int Row { get; }
         public int Col { get; }
         public bool IsMarked { get; set; }
