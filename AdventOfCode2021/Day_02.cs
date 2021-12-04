@@ -1,7 +1,5 @@
-using System.Text.RegularExpressions;
 using AoCHelper;
-using System;
-using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace AdventOfCode2021
 {
@@ -25,7 +23,7 @@ namespace AdventOfCode2021
 
             foreach (Match m in moves)
             {
-                switch(m.Groups["cmd"].Value)
+                switch (m.Groups["cmd"].Value)
                 {
                     case ("up"):
                         depth -= int.Parse(m.Groups["arg"].Value);
@@ -40,7 +38,7 @@ namespace AdventOfCode2021
                         break;
                 }
             }
-            return new ValueTask<string>("horizontal_distance*depth =" + (horizontalPosition*depth).ToString());
+            return new ValueTask<string>("horizontal_distance*depth =" + (horizontalPosition * depth).ToString());
         }
 
 
@@ -53,7 +51,7 @@ namespace AdventOfCode2021
 
             foreach (Match m in moves)
             {
-                switch(m.Groups["cmd"].Value)
+                switch (m.Groups["cmd"].Value)
                 {
                     case ("up"):
                         aim -= int.Parse(m.Groups["arg"].Value);
@@ -69,7 +67,7 @@ namespace AdventOfCode2021
                         break;
                 }
             }
-            return new ValueTask<string>("horizontal_distance*depth =" + (horizontalPosition*depth).ToString());
+            return new ValueTask<string>("horizontal_distance*depth =" + (horizontalPosition * depth).ToString());
         }
     }
 

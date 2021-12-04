@@ -1,8 +1,4 @@
 using AoCHelper;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace AdventOfCode2020
@@ -24,19 +20,19 @@ namespace AdventOfCode2020
         public override ValueTask<string> Solve_1()
         {
             var validPasswords = 0;
-            foreach(Match m in matches)
+            foreach (Match m in matches)
             {
                 var min = int.Parse(m.Groups["min"].Value);
                 var max = int.Parse(m.Groups["max"].Value);
                 var character = char.Parse(m.Groups["char"].Value);
                 var passwd = m.Groups["passwd"].Value.ToCharArray();
                 var instances = 0;
-                foreach(char c in passwd)
+                foreach (char c in passwd)
                 {
-                    if (c==character) instances++;
+                    if (c == character) instances++;
                 }
 
-                if (instances>=min && instances<=max) validPasswords++;
+                if (instances >= min && instances <= max) validPasswords++;
 
             }
             return new ValueTask<string>(validPasswords.ToString());
@@ -46,7 +42,7 @@ namespace AdventOfCode2020
         {
             // different interpretation of min and max.
             var validPasswords = 0;
-            foreach(Match m in matches)
+            foreach (Match m in matches)
             {
                 var char1 = int.Parse(m.Groups["min"].Value);
                 var char2 = int.Parse(m.Groups["max"].Value);
@@ -56,9 +52,9 @@ namespace AdventOfCode2020
 
                 // Should I check for validity of indexes?
                 // It's advent, let's take a leap of faith: No!
-                if (passwd[char1-1] == character) instances++;
-                if (passwd[char2-1] == character) instances++;
-                if (instances==1) validPasswords++;
+                if (passwd[char1 - 1] == character) instances++;
+                if (passwd[char2 - 1] == character) instances++;
+                if (instances == 1) validPasswords++;
 
             }
             return new ValueTask<string>(validPasswords.ToString());

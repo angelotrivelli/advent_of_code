@@ -33,7 +33,7 @@ namespace AdventOfCode2021
         {
             var numBoards = boardNums.Count() / numSquares;
 
-            for (int n=0; n<numBoards; n++)
+            for (int n = 0; n < numBoards; n++)
             {
                 boards.Add(new Board(n, boardSize, boardNums.Skip(n * numSquares).Take(numSquares)));
             }
@@ -98,14 +98,14 @@ namespace AdventOfCode2021
             bingo = false;
             score = 0;
 
-            int k=0;
+            int k = 0;
             for (int i = 0; i < boardSize; i++)
             {
                 for (int j = 0; j < boardSize; j++)
                 {
                     Squares.Add(new Square(numbers.Skip(k++).Take(1).First(), i, j));
                 }
-            }         
+            }
         }
 
 
@@ -116,7 +116,7 @@ namespace AdventOfCode2021
             foreach (var match in matches)
             {
                 match.IsMarked = true;
-                
+
                 if (Squares.Where(s => s.Row == match.Row).All(s => s.IsMarked) ||
                     Squares.Where(s => s.Col == match.Col).All(s => s.IsMarked))
                 {

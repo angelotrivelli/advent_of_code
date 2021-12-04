@@ -1,8 +1,4 @@
 ﻿using AoCHelper;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace AdventOfCode2021
 {
@@ -22,9 +18,9 @@ namespace AdventOfCode2021
         public override ValueTask<string> Solve_1()
         {
             var largerTally = 0;
-            for (int i=1 ; i<depths.Length ; i++ )
+            for (int i = 1; i < depths.Length; i++)
             {
-                largerTally += (depths[i] > depths[i-1]) ? 1 : 0;
+                largerTally += (depths[i] > depths[i - 1]) ? 1 : 0;
             }
             return new ValueTask<string>($"Depth increases: {largerTally}");
         }
@@ -33,11 +29,11 @@ namespace AdventOfCode2021
         public override ValueTask<string> Solve_2()
         {
             var largerTally = 0;
-            for (int i=0 ; i<depths.Length - 3 ; i++)
+            for (int i = 0; i < depths.Length - 3; i++)
             {
-                largerTally += (depths.Skip(i+1).Take(3).Sum() > depths.Skip(i).Take(3).Sum()) ? 1 : 0;
+                largerTally += (depths.Skip(i + 1).Take(3).Sum() > depths.Skip(i).Take(3).Sum()) ? 1 : 0;
             }
-             return new ValueTask<string>($"Depth increases (3 measurement rolling average): {largerTally}");
+            return new ValueTask<string>($"Depth increases (3 measurement rolling average): {largerTally}");
         }
     }
 

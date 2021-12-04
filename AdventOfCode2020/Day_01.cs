@@ -1,8 +1,4 @@
 using AoCHelper;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace AdventOfCode2020
 {
@@ -24,13 +20,13 @@ namespace AdventOfCode2020
 
         public override ValueTask<string> Solve_1()
         {
-            for (int i=0 ; i<size-1 ; i++)
+            for (int i = 0; i < size - 1; i++)
             {
-                for (int j=i+1 ; j<size ; j++)
+                for (int j = i + 1; j < size; j++)
                 {
                     if (entries.Skip(i).First() + entries.Skip(j).First() == 2020)
                     {
-                        return new ValueTask<string>((entries.Skip(i).First()*entries.Skip(j).First()).ToString());
+                        return new ValueTask<string>((entries.Skip(i).First() * entries.Skip(j).First()).ToString());
                     }
                 }
             }
@@ -41,16 +37,16 @@ namespace AdventOfCode2020
 
         public override ValueTask<string> Solve_2()
         {
-            for (int i=0 ; i<size-2 ; i++)
+            for (int i = 0; i < size - 2; i++)
             {
-                for (int j=i+1 ; j<size-1 ; j++)
+                for (int j = i + 1; j < size - 1; j++)
                 {
-                    for (int k=i+2 ; k<size ; k++)
+                    for (int k = i + 2; k < size; k++)
                     {
-                         if (entries.Skip(i).First() + entries.Skip(j).First() + entries.Skip(k).First() == 2020)
-                         {
-                             return new ValueTask<string>((entries.Skip(i).First()*entries.Skip(j).First()*entries.Skip(k).First()).ToString());
-                         }
+                        if (entries.Skip(i).First() + entries.Skip(j).First() + entries.Skip(k).First() == 2020)
+                        {
+                            return new ValueTask<string>((entries.Skip(i).First() * entries.Skip(j).First() * entries.Skip(k).First()).ToString());
+                        }
                     }
                 }
             }
