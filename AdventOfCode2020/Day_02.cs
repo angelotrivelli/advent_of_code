@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode2020
 {
-
     public class Day_02 : BaseDay
     {
         private readonly Regex passwdRegex = new(@"^(?<min>\d+)\-(?<max>\d+) (?<char>\w):\s(?<passwd>\w+)", RegexOptions.Multiline);
