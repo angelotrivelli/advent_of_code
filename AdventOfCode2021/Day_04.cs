@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode2021
 {
+
     public class Day_04 : BaseDay
     {
         private readonly Regex drawRegex = new(@"(\d+,)+\d+");
