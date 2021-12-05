@@ -57,7 +57,7 @@ namespace AdventOfCode2021
             var vx = v.Max(p => p.x);
             var vy = v.Max(p => p.y);
 
-            return new ValueTask<string>($"num intersections = {Vent.Points.Where(p => p.n > 1).Count()}");
+            return new ValueTask<string>($"num intersections (counting diagonals) = {Vent.Points.Where(p => p.n > 1).Count()}");
         }
     }
 
