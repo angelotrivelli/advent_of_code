@@ -152,18 +152,4 @@ namespace AdventOfCode2021
             }
         }
     }
-
-    public static class Example
-    {
-        public static string Input = "0,9 -> 5,9" + "\r\n" +
-                                     "8,0 -> 0,8" + "\r\n" +
-                                     "9,4 -> 3,4" + "\r\n" +
-                                     "2,2 -> 2,1" + "\r\n" +
-                                     "7,0 -> 7,4" + "\r\n" +
-                                     "6,4 -> 2,0" + "\r\n" +
-                                     "0,9 -> 2,9" + "\r\n" +
-                                     "3,4 -> 1,4" + "\r\n" +
-                                     "0,0 -> 8,8" + "\r\n" +
-                                     "5,5 -> 8,2";
-    }
 }
