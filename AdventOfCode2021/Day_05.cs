@@ -15,7 +15,7 @@ namespace AdventOfCode2021
         public Day_05()
         {
             input = IsExample
-                ? Example.Input
+                ? Example06.Input
                 : File.ReadAllText(InputFilePath);
         }
 

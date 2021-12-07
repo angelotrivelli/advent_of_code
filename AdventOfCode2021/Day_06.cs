@@ -2,6 +2,7 @@
 
 namespace AdventOfCode2021
 {
+
     public class Day_06 : BaseDay
     {
         private bool IsExample = true;
@@ -9,7 +10,7 @@ namespace AdventOfCode2021
         public Day_06()
         {
             var input = IsExample
-                            ? Example.Input
+                            ? Example06.Input
                             : File.ReadAllText(InputFilePath);
 
             fishes = input.Split(",").Select(c => new LFish(int.Parse(c))).ToList();
