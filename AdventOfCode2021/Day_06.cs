@@ -1,24 +1,30 @@
-﻿using AoCHelper;
+﻿using System.Linq;
+using AoCHelper;
 
 namespace AdventOfCode2021
 {
 
     public class Day_06 : BaseDay
     {
-        private bool IsExample = true;
-        private List<LFish> fishes;
+        private bool IsExample = false;
         public Day_06()
         {
-            var input = IsExample
-                            ? Example06.Input
-                            : File.ReadAllText(InputFilePath);
-
-            fishes = input.Split(",").Select(c => new LFish(int.Parse(c))).ToList();
         }
 
         public override ValueTask<string> Solve_1()
         {
-            for (int day = 1; day <= 18; day++)
+            int numDays = 80;
+
+            var input = IsExample
+                            ? Example06.Input
+                            : File.ReadAllText(InputFilePath);
+
+            var fishes = input
+                            .Split(",")
+                            .Select(c => new LFish(int.Parse(c)))
+                            .ToList();
+
+            for (int day = 1; day <= numDays; day++)
             {
                 var newFishes = new List<LFish>();
                 foreach(var f in fishes)
@@ -31,22 +37,52 @@ namespace AdventOfCode2021
                 }
                 fishes.AddRange(newFishes);
             }
-
-            return new ValueTask<string>($"number of Lanternfish = {fishes.Count()}");
+            return new ValueTask<string>($"number of Lanternfish ({numDays} days) = {fishes.Count()}");
         }
 
         public override ValueTask<string> Solve_2()
         {
-            ulong totalFish = 0;
-            int numDays = 18;
-            var dayOffsets = fishes.Select(f => f.Counter).ToList();
+            int numDays = 256;
 
-            foreach(var f in fishes)
+            var input = IsExample
+                        ? Example.Input
+                        : File.ReadAllText(InputFilePath);
+
+            var fishes = new Dictionary<int,ulong>();
+            foreach(int gen in Enumerable.Range(0,9))
             {
-                totalFish += (ulong)Math.Pow(2,Math.Floor((double)(numDays - f.Counter-3)/9));
+                fishes.Add(gen,0);
             }
 
-            return new ValueTask<string>($"number of Lanternfish (80 days) = {(long) totalFish} ");
+            var initialFishes = input.Split(",").Select(x => int.Parse(x)).ToList();
+            foreach(var f in initialFishes)
+            {
+                fishes[f] += 1;
+            }
+
+            for (int i=1 ; i<=numDays ; i++)
+            {
+                ulong newGen = 0;
+                foreach(int gen in Enumerable.Range(0,9))
+                {
+                    if (gen==0)
+                    {
+                        newGen = fishes[gen];
+                        continue;
+                    }
+                    fishes[gen-1] = fishes[gen];
+                }
+                fishes[6] += newGen;
+                fishes[8] = newGen;
+            }
+
+            ulong totalFishes = 0;
+            foreach(int gen in fishes.Keys)
+            {
+                totalFishes += fishes[gen];
+            }
+
+            return new ValueTask<string>($"number of Lanternfish ({numDays} days) = {totalFishes} ");
         }
     }
 
