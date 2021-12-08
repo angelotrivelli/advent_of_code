@@ -2,9 +2,9 @@
 
 namespace AdventOfCode2021
 {
+
     public class Day_07 : BaseDay
     {
-
         private bool IsExample = false;
 
         private readonly string input;
