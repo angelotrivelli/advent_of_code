@@ -3,8 +3,8 @@
 
 if (args.Length == 0)
 {
-    Solver.SolveAll();
-    // Solver.SolveLast();
+    // Solver.SolveAll();
+    Solver.SolveLast();
 }
 else if (args.Length == 1 && args[0].Contains("all", System.StringComparison.CurrentCultureIgnoreCase))
 {

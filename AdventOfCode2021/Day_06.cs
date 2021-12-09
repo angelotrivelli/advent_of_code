@@ -6,7 +6,7 @@ namespace AdventOfCode2021
 
     public class Day_06 : BaseDay
     {
-        private bool IsExample = false;
+        private bool IsExample = true;
         public Day_06()
         {
         }
@@ -45,7 +45,7 @@ namespace AdventOfCode2021
             int numDays = 256;
 
             var input = IsExample
-                        ? Example.Input
+                        ? Example08.Input
                         : File.ReadAllText(InputFilePath);
 
             var fishes = new Dictionary<int,ulong>();
