@@ -45,7 +45,7 @@ namespace AdventOfCode2021
             int numDays = 256;
 
             var input = IsExample
-                        ? Example.Input
+                        ? Example06.Input
                         : File.ReadAllText(InputFilePath);
 
             var fishes = new Dictionary<int,ulong>();
