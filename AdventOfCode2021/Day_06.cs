@@ -6,7 +6,7 @@ namespace AdventOfCode2021
 
     public class Day_06 : BaseDay
     {
-        private bool IsExample = false;
+        private bool IsExample = true;
         public Day_06()
         {
         }
