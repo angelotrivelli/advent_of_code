@@ -49,4 +49,13 @@
                                      "egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb" +        "\r\n" +
                                      "gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce";
     }
+
+    public static class Example09
+    {
+        public static string Input = "2199943210" + "\r\n" +
+                                     "3987894921" + "\r\n" +
+                                     "9856789892" + "\r\n" +
+                                     "8767896789" + "\r\n" +
+                                     "9899965678";
+    }
 }

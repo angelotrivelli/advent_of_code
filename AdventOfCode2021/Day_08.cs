@@ -4,6 +4,8 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode2021
 {
+
+
     public class Day_08 : BaseDay
     {
         private bool IsExample = false;
@@ -16,9 +18,6 @@ namespace AdventOfCode2021
             input = IsExample
                 ? Example08.Input
                 : File.ReadAllText(InputFilePath);
-
-
-
 
         }
 
